@@ -1,0 +1,58 @@
+<%- include("../partials/header") %>
+
+<div class="section-header">
+  <div>
+    <p class="eyebrow">Inventory</p>
+    <h1>Categories</h1>
+    <p>Kelola kategori produk.</p>
+  </div>
+
+  <a href="/categories/new" class="button">
+    Add Category
+  </a>
+</div>
+
+<div class="card-grid">
+  <% categories.forEach((category) => { %>
+    <article class="card">
+      <h2>
+        <a href="/categories/<%= category.id %>">
+          <%= category.name %>
+        </a>
+      </h2>
+
+      <p>
+        <%= category.description || "No description." %>
+      </p>
+
+      <p class="muted">
+        <%= category.item_count %> item(s)
+      </p>
+
+      <div class="actions">
+        <a
+          href="/categories/<%= category.id %>"
+          class="button secondary"
+        >
+          View
+        </a>
+
+        <a
+          href="/categories/<%= category.id %>/edit"
+          class="button secondary"
+        >
+          Edit
+        </a>
+
+        <a
+          href="/categories/<%= category.id %>/delete"
+          class="button danger"
+        >
+          Delete
+        </a>
+      </div>
+    </article>
+  <% }) %>
+</div>
+
+<%- include("../partials/footer") %>

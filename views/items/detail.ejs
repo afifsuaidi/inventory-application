@@ -1,0 +1,62 @@
+<%- include("../partials/header") %>
+
+<div class="detail-card">
+  <div class="detail-header">
+    <div>
+      <p class="eyebrow">Item</p>
+
+      <h1><%= item.name %></h1>
+
+      <p>
+        Category:
+        <a href="/categories/<%= item.category_id %>">
+          <%= item.category_name %>
+        </a>
+      </p>
+    </div>
+
+    <div class="actions">
+      <a
+        href="/items/<%= item.id %>/edit"
+        class="button"
+      >
+        Edit
+      </a>
+
+      <a
+        href="/items/<%= item.id %>/delete"
+        class="button danger"
+      >
+        Delete
+      </a>
+    </div>
+  </div>
+
+  <div class="item-info">
+    <div>
+      <span>Description</span>
+
+      <p>
+        <%= item.description || "No description." %>
+      </p>
+    </div>
+
+    <div>
+      <span>Price</span>
+
+      <strong>
+        Rp <%= Number(item.price).toLocaleString("id-ID") %>
+      </strong>
+    </div>
+
+    <div>
+      <span>Stock</span>
+
+      <strong>
+        <%= item.quantity %>
+      </strong>
+    </div>
+  </div>
+</div>
+
+<%- include("../partials/footer") %>

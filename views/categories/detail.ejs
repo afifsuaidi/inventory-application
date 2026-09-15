@@ -1,0 +1,91 @@
+<%- include("../partials/header") %>
+
+<div class="detail-header">
+  <div>
+    <p class="eyebrow">Category</p>
+    <h1><%= category.name %></h1>
+
+    <p>
+      <%= category.description || "No description." %>
+    </p>
+  </div>
+
+  <div class="actions">
+    <a
+      href="/categories/<%= category.id %>/edit"
+      class="button"
+    >
+      Edit
+    </a>
+
+    <a
+      href="/categories/<%= category.id %>/delete"
+      class="button danger"
+    >
+      Delete
+    </a>
+  </div>
+</div>
+
+<section>
+  <div class="section-header">
+    <div>
+      <h2>Items</h2>
+      <p>
+        <%= category.items.length %> item(s) dalam kategori ini.
+      </p>
+    </div>
+
+    <a
+      href="/items/new"
+      class="button"
+    >
+      Add Item
+    </a>
+  </div>
+
+  <% if (category.items.length === 0) { %>
+
+    <div class="empty">
+      <h3>No items yet</h3>
+      <p>Belum ada item dalam kategori ini.</p>
+    </div>
+
+  <% } else { %>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Stock</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% category.items.forEach((item) => { %>
+            <tr>
+              <td>
+                <a href="/items/<%= item.id %>">
+                  <%= item.name %>
+                </a>
+              </td>
+
+              <td>
+                Rp <%= Number(item.price).toLocaleString("id-ID") %>
+              </td>
+
+              <td>
+                <%= item.quantity %>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+
+  <% } %>
+</section>
+
+<%- include("../partials/footer") %>

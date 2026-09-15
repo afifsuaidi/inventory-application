@@ -1,0 +1,84 @@
+<%- include("../partials/header") %>
+
+<div class="section-header">
+  <div>
+    <p class="eyebrow">Inventory</p>
+    <h1>Items</h1>
+    <p>Seluruh produk dalam inventory.</p>
+  </div>
+
+  <a href="/items/new" class="button">
+    Add Item
+  </a>
+</div>
+
+<% if (items.length === 0) { %>
+
+  <div class="empty">
+    <h2>No items</h2>
+    <p>Belum ada item di inventory.</p>
+  </div>
+
+<% } else { %>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% items.forEach((item) => { %>
+          <tr>
+            <td>
+              <a href="/items/<%= item.id %>">
+                <%= item.name %>
+              </a>
+            </td>
+
+            <td>
+              <a href="/categories/<%= item.category_id %>">
+                <%= item.category_name %>
+              </a>
+            </td>
+
+            <td>
+              Rp <%= Number(item.price).toLocaleString("id-ID") %>
+            </td>
+
+            <td>
+              <%= item.quantity %>
+            </td>
+
+            <td>
+              <div class="actions">
+                <a
+                  href="/items/<%= item.id %>/edit"
+                  class="button small secondary"
+                >
+                  Edit
+                </a>
+
+                <a
+                  href="/items/<%= item.id %>/delete"
+                  class="button small danger"
+                >
+                  Delete
+                </a>
+              </div>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+<% } %>
+
+<%- include("../partials/footer") %>

@@ -1,0 +1,46 @@
+<%- include("../partials/header") %>
+
+<div class="form-container">
+  <p class="eyebrow">Danger Zone</p>
+
+  <h1>Delete Category</h1>
+
+  <div class="alert danger-alert">
+    <p>
+      Kamu akan menghapus kategori
+      <strong><%= category.name %></strong>.
+    </p>
+
+    <% if (category.items.length > 0) { %>
+      <p>
+        Kategori ini memiliki
+        <strong><%= category.items.length %> item</strong>.
+        Semua item tersebut juga akan dihapus.
+      </p>
+    <% } %>
+
+    <p>
+      Tindakan ini tidak dapat dibatalkan.
+    </p>
+  </div>
+
+  <form
+    action="/categories/<%= category.id %>/delete"
+    method="POST"
+  >
+    <div class="actions">
+      <button type="submit" class="button danger">
+        Yes, Delete
+      </button>
+
+      <a
+        href="/categories/<%= category.id %>"
+        class="button secondary"
+      >
+        Cancel
+      </a>
+    </div>
+  </form>
+</div>
+
+<%- include("../partials/footer") %>
